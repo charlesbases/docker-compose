@@ -1,5 +1,5 @@
 clean:
-	docker rm -f `docker ps -a | awk 'nr==2 {print $1}'`
+	docker rm -f `docker ps -a | awk 'NR==2 {print $1}'`
 
 .phony: up-mysql
 up-mysql:
