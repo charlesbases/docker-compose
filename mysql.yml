@@ -11,7 +11,7 @@ services:
     environment:
       TZ: Asia/Shanghai
 #      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
     ports:
       - "${MYSQL_PORT:-3306}:3306"
     volumes:
