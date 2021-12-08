@@ -13,9 +13,9 @@ services:
       MYSQL_ROOT_PASSWORD: 123456
     ports:
       - "${MYSQL_PORT:-3306}:3306"
-     volumes:
-       - /opt/mysql/data:/var/lib/mysql
-       - /opt/mysql/conf.d:/etc/mysql/conf.d
+    volumes:
+      - /opt/mysql/data:/var/lib/mysql
+      - /opt/mysql/conf.d:/etc/mysql/conf.d
     networks:
       - default
 
