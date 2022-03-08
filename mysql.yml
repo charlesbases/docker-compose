@@ -16,11 +16,7 @@ services:
     volumes:
       - /opt/mysql/data:/var/lib/mysql
       - /opt/mysql/conf.d:/etc/mysql/conf.d
-    networks:
-      - default
 
 networks:
   default:
-    name: bridge-default
-    driver: bridge
-    external: true
+    name: machine

@@ -19,11 +19,7 @@ services:
       - /opt/mongo/db:/data/db
       - /opt/mongo/log:/var/log
       - /opt/mongo/conf:/data/configdb
-    networks:
-      - default
 
 networks:
   default:
-    name: bridge-default
-    driver: bridge
-    external: true
+    name: machine

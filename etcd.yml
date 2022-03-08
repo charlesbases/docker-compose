@@ -13,11 +13,7 @@ services:
     ports:
       - "${ETCD_PORT_API:-2379}:2379"
       - "${ETCD_PORT_PEER:-2380}:2380"
-    networks:
-      - default
 
 networks:
   default:
-    name: bridge-default
-    driver: bridge
-    external: true
+    name: machine

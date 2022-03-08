@@ -16,11 +16,7 @@ services:
       - /opt/redis/data:/data
       - /opt/redis/logs:/logs
       - /opt/redis/redis.conf:/usr/local/etc/redis/redis.conf
-    networks:
-      - default
 
 networks:
   default:
-    name: bridge-default
-    driver: bridge
-    external: true
+    name: machine
