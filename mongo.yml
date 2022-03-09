@@ -11,7 +11,7 @@ services:
     environment:
       TZ: Asia/Shanghai
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
     volumes:
       - /opt/mongo/db:/data/db
       - /opt/mongo/log:/var/log
