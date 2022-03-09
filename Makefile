@@ -32,3 +32,11 @@ mongo-up:
 .phony: mongo-down
 mongo-down:
 	docker-compose -f mongo.yml down
+
+.phony: nsq-up
+nsq-up:
+	docker-compose -f nsq.yml up -d
+
+.phony: nsq-down
+nsq-down:
+	docker-compose -f nsq.yml down
