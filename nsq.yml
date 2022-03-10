@@ -10,8 +10,8 @@ services:
     environment:
       TZ: Asia/Shanghai
     ports:
-      - "4160"
-      - "4161"
+      - "${NSQLOOKUPD_TCP:-4160}:4160"
+      - "${NSQLOOKUPD_HTTP:-4161}:4161"
 
   nsqd:
     container_name: nsq_nsqd
@@ -24,8 +24,8 @@ services:
     depends_on:
       - nsqlookupd
     ports:
-      - "4150"
-      - "4151"
+      - "${NSQD_TCP:-4150}:4150"
+      - "${NSQD_HTTP:-4151}:4151"
 
   nsqadmin:
     container_name: nsq_nsqadmin
@@ -38,7 +38,7 @@ services:
     depends_on:
       - nsqlookupd
     ports:
-      - "4171"
+      - "${NSQADMIN_TCP:-4171}:4171"
 
 networks:
   default:
