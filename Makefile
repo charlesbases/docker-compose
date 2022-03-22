@@ -29,3 +29,9 @@ nats-up:
 
 nats-down:
 	docker-compose -f nats.yml down
+
+kafka-up:
+	docker-compose -f kafka.yml up -d
+
+kafka-down:
+	docker-compose -f kafka.yml down

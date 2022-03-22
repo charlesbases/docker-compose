@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:latest
+    container_name: zookeeper
+    hostname: zookeeper
+    privileged: true
+    environment:
+    ports:
+      - "2181:2181"
+    environment:
+      - TZ=Asia/Shanghai
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    volumes:
+      - /opt/data/broker:/bitnami
+
+  kafka:
+    image: docker.io/bitnami/kafka:latest
+    container_name: kafka
+    hostname: kafka
+    privileged: true
+    ports:
+      - "9092:9092"
+    environment:
+      - TZ=Asia/Shanghai
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+    volumes:
+      - /opt/data/broker/kafka:/bitnami/kafka
+    depends_on:
+      - zookeeper
+
+networks:
+  default:
+    name: broker
