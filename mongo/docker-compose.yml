@@ -1,0 +1,107 @@
+version: '3'
+
+networks:
+  default:
+    name: mongodb
+
+x-mongo-common: &mongo-common
+  image: mongo:latest
+  restart: always
+  privileged: true
+  environment:
+    TZ: Asia/Shanghai
+
+x-mongo-shardsvr: &mongo-shardsvr
+  depends_on:
+    - rs-configsvr-1
+    - rs-configsvr-2
+    - rs-configsvr-3
+
+services:
+  rs-configsvr-1:
+    <<: *mongo-common
+    container_name: rs-configsvr-1
+    hostname: rs-configsvr-1
+    command: mongod -f /data/configdb/mongo.conf
+    volumes:
+      - /opt/mongo/log:/data/log
+      - /opt/mongo/keyfile:/data/keyfile
+      - /opt/mongo/db/rs-configsvr-1/:/data/db
+      - /opt/mongo/conf/rs-configsvr-1:/data/configdb
+
+  rs-configsvr-2:
+    <<: *mongo-common
+    container_name: rs-configsvr-2
+    hostname: rs-configsvr-2
+    command: mongod -f /data/configdb/mongo.conf
+    volumes:
+      - /opt/mongo/log:/data/log
+      - /opt/mongo/keyfile:/data/keyfile
+      - /opt/mongo/db/rs-configsvr-2/:/data/db
+      - /opt/mongo/conf/rs-configsvr-2:/data/configdb
+
+  rs-configsvr-3:
+    <<: *mongo-common
+    container_name: rs-configsvr-3
+    hostname: rs-configsvr-3
+    command: mongod -f /data/configdb/mongo.conf
+    volumes:
+      - /opt/mongo/log:/data/log
+      - /opt/mongo/keyfile:/data/keyfile
+      - /opt/mongo/db/rs-configsvr-3/:/data/db
+      - /opt/mongo/conf/rs-configsvr-3:/data/configdb
+
+  rs-shardsvr-1:
+    <<: *mongo-common
+    <<: *mongo-shardsvr
+    container_name: rs-shardsvr-1
+    hostname: rs-shardsvr-1
+    command: mongod -f /data/configdb/mongo.conf
+    volumes:
+      - /opt/mongo/log:/data/log
+      - /opt/mongo/keyfile:/data/keyfile
+      - /opt/mongo/db/rs-shardsvr-1:/data/db
+      - /opt/mongo/conf/rs-shardsvr-1:/data/configdb
+
+  rs-shardsvr-2:
+    image: mongo:latest
+    <<: *mongo-common
+    <<: *mongo-shardsvr
+    container_name: rs-shardsvr-2
+    hostname: rs-shardsvr-2
+    command: mongod -f /data/configdb/mongo.conf
+    volumes:
+      - /opt/mongo/log:/data/log
+      - /opt/mongo/keyfile:/data/keyfile
+      - /opt/mongo/db/rs-shardsvr-2:/data/db
+      - /opt/mongo/conf/rs-shardsvr-2:/data/configdb
+
+  rs-shardsvr-3:
+    image: mongo:latest
+    <<: *mongo-common
+    <<: *mongo-shardsvr
+    container_name: rs-shardsvr-3
+    hostname: rs-shardsvr-3
+    command: mongod -f /data/configdb/mongo.conf
+    volumes:
+      - /opt/mongo/log:/data/log
+      - /opt/mongo/keyfile:/data/keyfile
+      - /opt/mongo/db/rs-shardsvr-3:/data/db
+      - /opt/mongo/conf/rs-shardsvr-3:/data/configdb
+
+  mongo:
+    <<: *mongo-common
+    container_name: mongo
+    hostname: mongo
+    command: mongos -f /data/configdb/mongo.conf
+    volumes:
+      - /opt/mongo/log:/data/log
+      - /opt/mongo/keyfile:/data/keyfile
+      - /opt/mongo/db/mongo:/data/db
+      - /opt/mongo/conf/mongo:/data/configdb
+    ports:
+      - "${MONGO_PORT:-27017}:27017"
+    depends_on:
+      - rs-shardsvr-1
+      - rs-shardsvr-2
+      - rs-shardsvr-3

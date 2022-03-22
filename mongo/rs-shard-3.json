@@ -1,0 +1,9 @@
+{
+  "_id": "shardsvr-3",
+  "members": [
+    {
+      "_id": 0,
+      "host": "rs-shardsvr-3:27017"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "_id": "configsvr",
+  "members": [
+    {
+      "_id": 1,
+      "host": "rs-configsvr-1:27017"
+    },
+    {
+      "_id": 2,
+      "host": "rs-configsvr-2:27017"
+    },
+    {
+      "_id": 3,
+      "host": "rs-configsvr-3:27017"
+    }
+  ]
+}
