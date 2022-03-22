@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   redis:
-    container_name: redis
     image: redis:latest
+    container_name: redis
     hostname: redis
     restart: always
     tty: true

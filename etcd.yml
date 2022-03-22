@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   etcd:
-    container_name: etcd
     image: quay.io/coreos/etcd:latest
+    container_name: etcd
     hostname: etcd
     restart: always
     tty: true

@@ -1,42 +1,31 @@
 clean:
-	docker rm -f `docker ps -a | awk 'NR==2 {print $1}'`
+	@echo "cleaning..."
+	@docker rm -f `docker ps -aq`
 
-.phony: mysql-up
+# MySQL
 mysql-up:
 	docker-compose -f mysql.yml up -d
 
-.phony: mysql-down
 mysql-down:
 	docker-compose -f mysql.yml down
 
-.phony: redis-up
+# Redis
 redis-up:
 	docker-compose -f redis.yml up -d
 
-.phony: redis-down
 redis-down:
 	docker-compose -f redis.yml down
 
-.phony: nats-up
-nats-up:
-	docker-compose -f nats.yml up -d
-
-.phony: nats-down
-nats-down:
-	docker-compose -f nats.yml down
-
-.phony: mongo-up
-mongo-up:
-	docker-compose -f mongo.yml up -d
-
-.phony: mongo-down
-mongo-down:
-	docker-compose -f mongo.yml down
-
-.phony: nsq-up
+# NSQ
 nsq-up:
 	docker-compose -f nsq.yml up -d
 
-.phony: nsq-down
 nsq-down:
 	docker-compose -f nsq.yml down
+
+# Nats
+nats-up:
+	docker-compose -f nats.yml up -d
+
+nats-down:
+	docker-compose -f nats.yml down

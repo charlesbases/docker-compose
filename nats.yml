@@ -2,8 +2,9 @@ version: "3.8"
 
 services:
   nats:
-    container_name: nats
     image: nats:latest
+    container_name: nats
+    hostname: nats
     restart: always
     entrypoint: /nats-server
     command: --js --sd /data

@@ -2,8 +2,8 @@ version: '3'
 
 services:
   nsqlookupd:
-    container_name: nsq_nsqlookupd
     image: nsqio/nsq
+    container_name: nsq_nsqlookupd
     hostname: nsqlookupd
     command: /nsqlookupd
     tty: true
@@ -14,8 +14,8 @@ services:
       - "${NSQLOOKUPD_HTTP:-4161}:4161"
 
   nsqd:
-    container_name: nsq_nsqd
     image: nsqio/nsq
+    container_name: nsq_nsqd
     hostname: nsqd
     command: /nsqd --lookupd-tcp-address=nsqlookupd:4160
     tty: true
@@ -28,8 +28,8 @@ services:
       - "${NSQD_HTTP:-4151}:4151"
 
   nsqadmin:
-    container_name: nsq_nsqadmin
     image: nsqio/nsq
+    container_name: nsq_nsqadmin
     hostname: nsqadmin
     command: /nsqadmin --lookupd-http-address=nsqlookupd:4161
     tty: true
