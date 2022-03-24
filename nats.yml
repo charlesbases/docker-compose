@@ -6,6 +6,8 @@ services:
     container_name: nats
     hostname: nats
     restart: always
+    privileged: true
+    user: root
     entrypoint: /nats-server
     command: --js --sd /data
     environment:
@@ -15,7 +17,7 @@ services:
       - "${NATS_CLUSTER_PORT:-6222}:6222"
       - "${NATS_HTTP_PORT:-8222}:8222"
     volumes:
-      - /opt/nats:/data
+      - /opt/volumes/nats:/data
 
 networks:
   default:

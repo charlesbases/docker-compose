@@ -6,6 +6,8 @@ services:
     container_name: redis
     hostname: redis
     restart: always
+    privileged: true
+    user: root
     tty: true
     command: redis-server --appendonly yes
     environment:
@@ -13,9 +15,9 @@ services:
     ports:
       - "${REDIS_PORT:-6379}:6379"
     volumes:
-      - /opt/redis/data:/data
-      - /opt/redis/logs:/logs
-      - /opt/redis/redis.conf:/usr/local/etc/redis/redis.conf
+      - /opt/volumes/redis/data:/data
+      - /opt/volumes/redis/logs:/logs
+      - /opt/volumes/redis/redis.conf:/usr/local/etc/redis/redis.conf
 
 networks:
   default:

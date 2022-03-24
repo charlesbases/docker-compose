@@ -5,12 +5,14 @@ services:
     image: nginx:alpine
     container_name: nginx
     hostname: nginx
+    privileged: true
+    user: root
     environment:
       TZ: Asia/Shanghai
     volumes:
-      - /opt/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-#      - /opt/nginx/nginx.pid:/var/run/nginx.pid
-      - /opt/nginx/logs:/var/log/nginx
+      - /opt/volumes/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+#      - /opt/volumes/nginx/nginx.pid:/var/run/nginx.pid
+      - /opt/volumes/nginx/logs:/var/log/nginx
 #    ports:
 
 networks:
