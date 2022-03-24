@@ -8,6 +8,7 @@ x-mongo-common: &mongo-common
   image: mongo:latest
   restart: always
   privileged: true
+  user: root
   environment:
     TZ: Asia/Shanghai
 
@@ -24,10 +25,10 @@ services:
     hostname: rs-configsvr-1
     command: mongod -f /data/configdb/mongo.conf
     volumes:
-      - /opt/mongo/log:/data/log
-      - /opt/mongo/keyfile:/data/keyfile
-      - /opt/mongo/db/rs-configsvr-1/:/data/db
-      - /opt/mongo/conf/rs-configsvr-1:/data/configdb
+      - /opt/volumes/mongo/log:/data/log
+      - /opt/volumes/mongo/keyfile:/data/keyfile
+      - /opt/volumes/mongo/db/rs-configsvr-1/:/data/db
+      - /opt/volumes/mongo/conf/rs-configsvr-1:/data/configdb
 
   rs-configsvr-2:
     <<: *mongo-common
@@ -35,10 +36,10 @@ services:
     hostname: rs-configsvr-2
     command: mongod -f /data/configdb/mongo.conf
     volumes:
-      - /opt/mongo/log:/data/log
-      - /opt/mongo/keyfile:/data/keyfile
-      - /opt/mongo/db/rs-configsvr-2/:/data/db
-      - /opt/mongo/conf/rs-configsvr-2:/data/configdb
+      - /opt/volumes/mongo/log:/data/log
+      - /opt/volumes/mongo/keyfile:/data/keyfile
+      - /opt/volumes/mongo/db/rs-configsvr-2/:/data/db
+      - /opt/volumes/mongo/conf/rs-configsvr-2:/data/configdb
 
   rs-configsvr-3:
     <<: *mongo-common
@@ -46,10 +47,10 @@ services:
     hostname: rs-configsvr-3
     command: mongod -f /data/configdb/mongo.conf
     volumes:
-      - /opt/mongo/log:/data/log
-      - /opt/mongo/keyfile:/data/keyfile
-      - /opt/mongo/db/rs-configsvr-3/:/data/db
-      - /opt/mongo/conf/rs-configsvr-3:/data/configdb
+      - /opt/volumes/mongo/log:/data/log
+      - /opt/volumes/mongo/keyfile:/data/keyfile
+      - /opt/volumes/mongo/db/rs-configsvr-3/:/data/db
+      - /opt/volumes/mongo/conf/rs-configsvr-3:/data/configdb
 
   rs-shardsvr-1:
     <<: *mongo-common
@@ -58,10 +59,10 @@ services:
     hostname: rs-shardsvr-1
     command: mongod -f /data/configdb/mongo.conf
     volumes:
-      - /opt/mongo/log:/data/log
-      - /opt/mongo/keyfile:/data/keyfile
-      - /opt/mongo/db/rs-shardsvr-1:/data/db
-      - /opt/mongo/conf/rs-shardsvr-1:/data/configdb
+      - /opt/volumes/mongo/log:/data/log
+      - /opt/volumes/mongo/keyfile:/data/keyfile
+      - /opt/volumes/mongo/db/rs-shardsvr-1:/data/db
+      - /opt/volumes/mongo/conf/rs-shardsvr-1:/data/configdb
 
   rs-shardsvr-2:
     image: mongo:latest
@@ -71,10 +72,10 @@ services:
     hostname: rs-shardsvr-2
     command: mongod -f /data/configdb/mongo.conf
     volumes:
-      - /opt/mongo/log:/data/log
-      - /opt/mongo/keyfile:/data/keyfile
-      - /opt/mongo/db/rs-shardsvr-2:/data/db
-      - /opt/mongo/conf/rs-shardsvr-2:/data/configdb
+      - /opt/volumes/mongo/log:/data/log
+      - /opt/volumes/mongo/keyfile:/data/keyfile
+      - /opt/volumes/mongo/db/rs-shardsvr-2:/data/db
+      - /opt/volumes/mongo/conf/rs-shardsvr-2:/data/configdb
 
   rs-shardsvr-3:
     image: mongo:latest
@@ -84,10 +85,10 @@ services:
     hostname: rs-shardsvr-3
     command: mongod -f /data/configdb/mongo.conf
     volumes:
-      - /opt/mongo/log:/data/log
-      - /opt/mongo/keyfile:/data/keyfile
-      - /opt/mongo/db/rs-shardsvr-3:/data/db
-      - /opt/mongo/conf/rs-shardsvr-3:/data/configdb
+      - /opt/volumes/mongo/log:/data/log
+      - /opt/volumes/mongo/keyfile:/data/keyfile
+      - /opt/volumes/mongo/db/rs-shardsvr-3:/data/db
+      - /opt/volumes/mongo/conf/rs-shardsvr-3:/data/configdb
 
   mongo:
     <<: *mongo-common
@@ -95,10 +96,10 @@ services:
     hostname: mongo
     command: mongos -f /data/configdb/mongo.conf
     volumes:
-      - /opt/mongo/log:/data/log
-      - /opt/mongo/keyfile:/data/keyfile
-      - /opt/mongo/db/mongo:/data/db
-      - /opt/mongo/conf/mongo:/data/configdb
+      - /opt/volumes/mongo/log:/data/log
+      - /opt/volumes/mongo/keyfile:/data/keyfile
+      - /opt/volumes/mongo/db/mongo:/data/db
+      - /opt/volumes/mongo/conf/mongo:/data/configdb
     ports:
       - "${MONGO_PORT:-27017}:27017"
     depends_on:

@@ -2,11 +2,8 @@
 
 set -e
 
-# start or stop
-in=$1
-
 # 本地挂载目录
-mongodir="/opt/mongo"
+mongodir="/opt/volumes/mongo"
 
 # mongos 服务名
 rs_mongos="mongo"
