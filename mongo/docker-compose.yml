@@ -7,8 +7,6 @@ networks:
 x-mongo-common: &mongo-common
   image: mongo:latest
   restart: always
-  privileged: true
-  user: root
   environment:
     TZ: Asia/Shanghai
 

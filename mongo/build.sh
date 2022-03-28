@@ -25,22 +25,27 @@ conf() {
 
   # mongos
   if [[ ! -f "$mongodir/conf/$rs_mongos/mongo.conf" ]]; then
-    sudo mkdir -p $mongodir/conf/$rs_mongos && cp conf/$rs_mongos.conf $mongodir/conf/$rs_mongos/mongo.conf
+    sudo mkdir -p $mongodir/{db,log,conf}/$rs_mongos
+    cp conf/$rs_mongos.conf $mongodir/conf/$rs_mongos/mongo.conf
   fi
 
   # shardsvr
   for i in ${rs_shardsvrs[@]}; do
     if [[ ! -f "$mongodir/conf/$i/mongo.conf" ]]; then
-      sudo mkdir -p $mongodir/conf/$i && cp conf/$i.conf $mongodir/conf/$i/mongo.conf
+      sudo mkdir -p $mongodir/{db,log,conf}/$i
+      cp conf/$i.conf $mongodir/conf/$i/mongo.conf
     fi
   done
   
   # configsvr
   for i in ${rs_configsvrs[@]}; do
     if [[ ! -f "$mongodir/conf/$i/mongo.conf" ]]; then
-      sudo mkdir -p $mongodir/conf/$i && cp conf/$i.conf $mongodir/conf/$i/mongo.conf
+      sudo mkdir -p $mongodir/{db,log,conf}/$i
+      cp conf/$i.conf $mongodir/conf/$i/mongo.conf
     fi
   done
+
+  sudo chown -R 999 $mongodir/{db,log,conf}
 }
 
 keyfile() {
