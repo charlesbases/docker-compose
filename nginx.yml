@@ -5,8 +5,9 @@ services:
     image: nginx:alpine
     container_name: nginx
     hostname: nginx
-    privileged: true
+    restart: always
     user: root
+    privileged: true
     environment:
       TZ: Asia/Shanghai
     volumes:

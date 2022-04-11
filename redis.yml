@@ -6,9 +6,8 @@ services:
     container_name: redis
     hostname: redis
     restart: always
-    privileged: true
     user: root
-    tty: true
+    privileged: true
     command: redis-server --appendonly yes
     environment:
       TZ: Asia/Shanghai

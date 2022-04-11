@@ -6,7 +6,8 @@ services:
     container_name: etcd
     hostname: etcd
     restart: always
-    tty: true
+    user: root
+    privileged: true
     command: etcd --name=etcd --advertise-client-urls=http://0.0.0.0:2379  --listen-client-urls=http://0.0.0.0:2379 --listen-peer-urls=http://0.0.0.0:238  --initial-advertise-peer-urls=http://0.0.0.0:2380
     environment:
       TZ: Asia/Shanghai

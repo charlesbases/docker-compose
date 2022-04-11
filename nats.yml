@@ -6,8 +6,8 @@ services:
     container_name: nats
     hostname: nats
     restart: always
-    privileged: true
     user: root
+    privileged: true
     entrypoint: /nats-server
     command: --js --sd /data
     environment:
