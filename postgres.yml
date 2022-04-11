@@ -10,7 +10,7 @@ services:
     privileged: true
     environment:
       TZ: Asia/Shanghai
-      POSTGRES_USER: root
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
     ports:
       - "5432:5432"
