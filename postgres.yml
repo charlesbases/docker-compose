@@ -19,4 +19,4 @@ services:
 
 networks:
   default:
-    name: mxnavi
+    name: machine
