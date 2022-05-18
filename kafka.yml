@@ -39,4 +39,4 @@ services:
 
 networks:
   default:
-    name: broker
+    name: machine
