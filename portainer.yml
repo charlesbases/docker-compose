@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  portainer:
+    image: portainer/portainer:latest
+    container_name: portainer
+    hostname: portainer
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - /opt/volumes/portainer/data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "${PORTAINER_PORT:-9000}:9000"
+
+networks:
+  default:
+    name: machine
