@@ -11,7 +11,7 @@ services:
     environment:
       TZ: Asia/Shanghai
     volumes:
-      - /opt/volumes/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /opt/volumes/nginx/conf:/etc/nginx/conf.d
 #      - /opt/volumes/nginx/nginx.pid:/var/run/nginx.pid
       - /opt/volumes/nginx/logs:/var/log/nginx
 #    ports:
